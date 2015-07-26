@@ -45,7 +45,39 @@ def commands(Message, Status):
 
 
 def diceroll(Message):
-	test=1
+	dice = '//d20+2d5-1+5-d6'
+	removeslashes = re.split('//',dice)
+	total = re.split('\+|\-',removeslashes[1])
+	posrm = re.split('\+',removeslashes[1])
+	posneg = [0 for x in range(len(total))]
+	count = 0
+
+	for i in range(len(posrm)):
+		negrm = re.split('\-',posrm[i])
+		if len(negrm) == 1:
+		        posneg[count]=1
+		        count = count + 1
+		else:
+		        for x in range(len(negrm)):
+		                if x == 0:
+		                        posneg[count] = 1
+		                        count = count + 1
+		                else:
+		                        posneg[count] = -1
+		                        count = count + 1
+
+	for z in range(len(total)):
+		roll = re.split('d',total[z])
+		if roll[0] == '':
+		        rollnum = 1
+		else:
+		        rollnum = roll[0]
+		if len(roll) == 2:
+		        for y in range(int(rollnum)):
+		                max = roll[1]
+		                rolling = random.randint(1,int(max))
+		else:
+		        rolling = roll[0]
 
 
 
