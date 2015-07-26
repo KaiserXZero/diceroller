@@ -2,6 +2,7 @@
 import time
 import Skype4Py
 import random
+import re
 
 
 def commands(Message, Status):
