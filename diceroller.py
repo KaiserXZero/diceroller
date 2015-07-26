@@ -4,7 +4,6 @@ import Skype4Py
 import random
 import re
 
-
 def commands(Message, Status):
 	if Status == 'SENT' or (Status == 'RECEIVED'):
 
@@ -46,7 +45,7 @@ def commands(Message, Status):
 
 
 def diceroll(Message):
-	dice = '//d20+2d5-1+5-d6'
+	dice = Message
 	removeslashes = re.split('//',dice)
 	total = re.split('\+|\-',removeslashes[1])
 	posrm = re.split('\+',removeslashes[1])
