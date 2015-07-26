@@ -107,12 +107,16 @@ def diceroll(Message):
 		if noshow == 0:
 			print 'Rolling: ('+sign+total[z]+')'
 			print 'Results: [' + sign + ']' + str(rolls) + ' = ' + str(sum)
+			Message.Chat.SendMessage('Rolling: ('+sign+total[z]+')')
+			Message.Chat.SendMessage('Results: [' + sign + ']' + str(rolls) + ' = ' + str(sum))
 
 		if z+1 == len(total):
 			print '============='
 			print 'Total = ',tot
 			print '============='
-
+			Message.Chat.SendMessage('=============')
+			Message.Chat.SendMessage('Total = ',tot)
+			Message.Chat.SendMessage('=============')
 
 
 def cmd_ping(Message):
