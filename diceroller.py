@@ -51,33 +51,67 @@ def diceroll(Message):
 	posrm = re.split('\+',removeslashes[1])
 	posneg = [0 for x in range(len(total))]
 	count = 0
+	tot = 0
 
 	for i in range(len(posrm)):
-		negrm = re.split('\-',posrm[i])
-		if len(negrm) == 1:
-		        posneg[count]=1
-		        count = count + 1
-		else:
-		        for x in range(len(negrm)):
-		                if x == 0:
-		                        posneg[count] = 1
-		                        count = count + 1
-		                else:
-		                        posneg[count] = -1
-		                        count = count + 1
+        	negrm = re.split('\-',posrm[i])
+        	if len(negrm) == 1:
+                	posneg[count]=1
+                	count = count + 1
+        	else:
+                	for x in range(len(negrm)):
+                	        if x == 0:
+                	                posneg[count] = 1
+                	                count = count + 1
+                	        else:
+                	                posneg[count] = -1
+                	                count = count + 1
 
 	for z in range(len(total)):
+		count = count + 1
+		noshow = 0
+		sum = 0
+
+
+		if posneg[z] == 1:
+			sign = '+'
+		else:
+			sign = '-'
+
 		roll = re.split('d',total[z])
+
 		if roll[0] == '':
-		        rollnum = 1
+			rollnum = 1
+		elif len(roll) == 2:
+			rollnum = roll[0]
 		else:
-		        rollnum = roll[0]
+			rollnum = 1
+			noshow = 1
+
+		rolls = [0] * int(rollnum)
+
 		if len(roll) == 2:
-		        for y in range(int(rollnum)):
-		                max = roll[1]
-		                rolling = random.randint(1,int(max))
+			for y in range(int(rollnum)):
+			        max = roll[1]
+			        rolling = random.randint(1,int(max))
+			        rolls[y] = rolling
+			        sum = sum + int(rolling) * posneg[z]
+			        if y+1 == int(rollnum):
+			                tot = tot + sum
 		else:
-		        rolling = roll[0]
+			rolling = roll[0]
+			rolls[0] = rolling
+			sum = sum + int(rolling) * posneg[z]
+			tot = tot + sum
+
+		if noshow == 0:
+			print 'Rolling: ('+sign+total[z]+')'
+			print 'Results: [' + sign + ']' + str(rolls) + ' = ' + str(sum)
+
+		if z+1 == len(total):
+			print '============='
+			print 'Total = ',tot
+			print '============='
 
 
 
