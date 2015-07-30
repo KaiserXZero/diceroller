@@ -5,11 +5,11 @@ import random
 import re
 
 def commands(Message, Status):
-    	mess = [Message.Body]
 
 	if Status == 'SENT' or (Status == 'RECEIVED'):
+		mess = [Message.Body]
 
-		if fnmatch.filter(mess, '//*')
+		if fnmatch.filter(mess, '//*'):
 			diceroll(Message)
 
 		elif Message.Body == "!ping":
