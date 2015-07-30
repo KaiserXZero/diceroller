@@ -5,9 +5,11 @@ import random
 import re
 
 def commands(Message, Status):
+    	mess = [Message.Body]
+
 	if Status == 'SENT' or (Status == 'RECEIVED'):
 
-		if Message.Body == "//*":
+		if fnmatch.filter(mess, '//*')
 			diceroll(Message)
 
 		elif Message.Body == "!ping":
@@ -107,16 +109,24 @@ def diceroll(Message):
 		if noshow == 0:
 			print 'Rolling: ('+sign+total[z]+')'
 			print 'Results: [' + sign + ']' + str(rolls) + ' = ' + str(sum)
+   			time.sleep(0.1)
+      			Message.Chat.SendMessage('~')
+         		time.sleep(0.1)
 			Message.Chat.SendMessage('Rolling: ('+sign+total[z]+')')
+			time.sleep(0.1)
 			Message.Chat.SendMessage('Results: [' + sign + ']' + str(rolls) + ' = ' + str(sum))
 
 		if z+1 == len(total):
 			print '============='
 			print 'Total = ',tot
 			print '============='
+			time.sleep(0.1)
 			Message.Chat.SendMessage('=============')
-			Message.Chat.SendMessage('Total = ',tot)
+			time.sleep(0.1)
+			Message.Chat.SendMessage(Message.FromHandle+': Total = ',tot)
+			time.sleep(0.1)
 			Message.Chat.SendMessage('=============')
+			time.sleep(0.1)
 
 
 def cmd_ping(Message):
