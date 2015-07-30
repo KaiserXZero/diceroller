@@ -7,7 +7,7 @@ import re
 def commands(Message, Status):
 
 	if Status == 'SENT' or (Status == 'RECEIVED'):
-		mess = [Message.Body]
+		mess = Message.Body
 
 		if fnmatch.filter(mess, '//*'):
 			diceroll(Message)
@@ -47,7 +47,7 @@ def commands(Message, Status):
 
 
 def diceroll(Message):
-	dice = Message
+	dice = Message.Body
 	removeslashes = re.split('//',dice)
 	total = re.split('\+|\-',removeslashes[1])
 	posrm = re.split('\+',removeslashes[1])
