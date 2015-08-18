@@ -3,12 +3,13 @@ import time
 import Skype4Py
 import random
 import re
+import fnmatch
 
 def commands(Message, Status):
 
 	if Status == 'SENT' or (Status == 'RECEIVED'):
-		mess = Message.Body
-
+		mess = [Message.Body]
+		
 		if fnmatch.filter(mess, '//*'):
 			diceroll(Message)
 
@@ -30,8 +31,8 @@ def commands(Message, Status):
 		elif Message.Body == "!help":
 			cmd_help(Message)
 
-		elif Message.Body == "!spam":
-			cmd_spam(Message)
+		#elif Message.Body == "!spam":
+		#	cmd_spam(Message)
 
 		elif Message.Body == "!introduce":
 			cmd_intro(Message)
@@ -123,7 +124,7 @@ def diceroll(Message):
 			time.sleep(0.1)
 			Message.Chat.SendMessage('=============')
 			time.sleep(0.1)
-			Message.Chat.SendMessage(Message.FromHandle+': Total = ',tot)
+			Message.Chat.SendMessage(Message.FromHandle+': Total = '+str(tot))
 			time.sleep(0.1)
 			Message.Chat.SendMessage('=============')
 			time.sleep(0.1)
